@@ -23,8 +23,11 @@ def add_contact(): #kyle
     #use file contacts.txt
     #adds a name, address, phone, and email for each contact record
     #ask if more than one contact is being made
+    
     another = 'y'
+    
     contacts_file = open('contacts.txt', 'a')
+    
     while another.lower() == 'y':
         print("Please enter your contact's information:")
         name = input('Name: ')
@@ -38,7 +41,9 @@ def add_contact(): #kyle
         contacts_file.write(email + '\n')
         
         another = input('Do you wish to add another contact? (y to continue): ')
+        
     contacts_file.close()
+    
     print('\nAll data added to contacts.txt.')
     
     
