@@ -95,7 +95,57 @@ def search_contact():
     #when found, print
     #if not found display error
     
-    pass
+    try:
+        
+        #bool for search
+        found = False
+        
+        #get input
+        search = input('Enter a Contact to search for: ')
+        
+        #open
+        infile = open('contacts.txt', 'r')
+        
+        #get desc from file
+        name = infile.readline()
+        
+        #loop
+        while desc != '':
+            address = infile.readline()
+            phone = infile.readline()
+            email = infile.readline()
+            
+            
+            #strip \n
+            name = name.rstrip('\n')
+            
+            #determine if record is found
+            if name.lower() == search.lower():
+                print('\nRecord Found\n')
+                print('Name:', name)
+                print('Street Address:', address)
+                print('Phone Number:', phone)
+                print('Email Address:', email)
+                found = True
+                
+            #read next record
+            name = infile.readline()
+            
+        #close
+        infile.close()
+        
+        if not found:
+            print('\nThe Contact was not found.')
+            
+    #error check
+    except ValueError as err:
+        print(err)
+        
+    except IOError as err:
+        print(err)
+        
+    except:
+        print('An error has occoured, try again later.')
     
 def edit_contact(): #kyle
     #edit contact accepts no arguments
