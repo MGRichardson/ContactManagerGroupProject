@@ -7,8 +7,50 @@ def main():
     #main accepts no arguments
     #calls menu() for options and choice
     #use choice to call functions or exit program
-    
-    pass
+    try: 
+        #welcome message
+        print('Welcome to Contact Manager')
+        
+        #call options
+        choice = menu()
+        
+        #find function to match choice
+        while choice >= 1 and choice <= 5
+        
+            if choice == 1:
+                add_contact()
+            
+            if choice == 2:
+                search_contact()
+                
+            if choice == 3:
+                edit_contact()
+                
+            if choice == 4:
+                delete_contact()
+                
+            if choice == 5:
+                display_contacts()
+            
+        if choice != 6:
+            #invalid input
+            print('Please enter a number 1-6.')
+            
+            main()
+            
+        else:
+            #exit message
+            print('Thank you for using Contact Manager.')
+            
+    #error check
+    except ValueError as err:
+        print(err)
+        
+    except IOError as err:
+        print(err)
+        
+    except:
+        print('An error has occoured, try again later.')
     
 def menu(): #nolan
     #menu accepts no arguments
