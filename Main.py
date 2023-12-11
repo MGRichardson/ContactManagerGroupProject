@@ -66,7 +66,27 @@ def add_contact(): #kyle
     #adds a name, address, phone, and email for each contact record
     #ask if more than one contact is being made
     
-    pass
+    another = 'y'
+    
+    contacts_file = open('contacts.txt', 'a')
+    
+    while another.lower() == 'y':
+        print("Please enter your contact's information:")
+        name = input('Name: ')
+        st_ad = input('Street Address: ')
+        phone = input('Phone Number: ')
+        email = input('Email Address: ')
+        
+        contacts_file.write(name + '\n')
+        contacts_file.write(st_ad + '\n')
+        contacts_file.write(phone + '\n')
+        contacts_file.write(email + '\n')
+        
+        another = input('Do you wish to add another contact? (y to continue): ')
+        
+    contacts_file.close()
+    
+    print('\nAll data added to contacts.txt.')
     
 def search_contact():
     #search contact accepts no arguments

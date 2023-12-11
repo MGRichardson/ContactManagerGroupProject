@@ -40,7 +40,7 @@ def add_contact(): #kyle
         another = input('Do you wish to add another contact? (y to continue): ')
     contacts_file.close()
     print('\nAll data added to contacts.txt.')
-    pass
+    
     
 def search_contact(): #mason
     #search contact accepts no arguments
