@@ -10,7 +10,7 @@ def main():
     
     pass
     
-def menu():
+def menu(): #nolan
     #menu accepts no arguments
     #outputs list of options
     #prompts for option chosen
@@ -18,7 +18,7 @@ def menu():
     
     pass
     
-def add_contact():
+def add_contact(): #kyle
     #add contact accepts no arguments
     #use file contacts.txt
     #adds a name, address, phone, and email for each contact record
@@ -35,7 +35,7 @@ def search_contact():
     
     pass
     
-def edit_contact():
+def edit_contact(): #kyle
     #edit contact accepts no arguments
     #prompts for a contact to find
     #if not found display error
@@ -51,7 +51,7 @@ def delete_contact():
     
     pass
     
-def display_contacts():
+def display_contacts(): #nolan
     #display contacts accepts no arguments
     #print all contacts in contacts.txt
     
