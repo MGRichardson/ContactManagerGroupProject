@@ -15,7 +15,7 @@ def main():
         choice = menu()
         
         #find function to match choice
-        while choice >= 1 and choice <= 5
+        while choice >= 1 and choice <= 5:
         
             if choice == 1:
                 add_contact()
@@ -106,11 +106,11 @@ def search_contact():
         #open
         infile = open('contacts.txt', 'r')
         
-        #get desc from file
+        #get name from file
         name = infile.readline()
         
         #loop
-        while desc != '':
+        while name != '':
             address = infile.readline()
             phone = infile.readline()
             email = infile.readline()
@@ -161,7 +161,78 @@ def delete_contact():
     #prompts for a contact to delete
     #use temp to remove contact from contacts.txt
     
-    pass
+    try:
+        #bool
+        found = False
+        
+        #ask what to delete
+        search = input('Enter the contact to delete: ')
+            
+        #open
+        contact = open('contacts.txt', 'r')
+        temp = open('temp.txt', 'w')
+        
+        #read name
+        name = contact.readline()
+        
+        #loop to read all
+        while name != '':
+            
+            #read contact info
+            address = contact.readline()
+            phone = contact.readline()
+            email = contact.readline()
+            
+            #strip
+            name = name.rstrip('\n')
+            address = address.rstrip('\n')
+            phone = address.rstrip('\n')
+            email = address.rstrip('\n')
+            
+        #search for and delete record
+            if search.lower() != name.lower():
+                
+                #write to temp
+                temp.write(name + '\n')
+                temp.write(address + '\n')
+                temp.write(phone + '\n')
+                temp.write(email + '\n')
+                
+            else:
+                found = True
+                
+            #read
+            name = contact.readline()
+                
+            #all processed
+            #close, rename, close
+                
+            #close
+            contact.close()
+            temp.close()
+            
+            #delete orginal
+            os.remove('contacts.txt')
+            
+            #rename temp
+            os.rename('temp.txt', 'contacts.txt')
+                
+        #nameription not found
+        if not found:
+            print('\nRecord not found.\n')
+        
+        else:
+            print(search, 'has been deleted from contacts.txt')
+        
+    #error check
+    except ValueError as err:
+        print(err)
+        
+    except IOError as err:
+        print(err)
+        
+    except:
+        print('An error has occoured, try again later.')
     
 def display_contacts(): #nolan
     #display contacts accepts no arguments
