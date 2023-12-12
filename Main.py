@@ -153,8 +153,49 @@ def edit_contact(): #kyle
     #if not found display error
     #when found prompt for what info to edit
     #use temp to edit contacts.txt
+    found = False
+    search = input('Enter the contact you wish to modify: ')
+    new_st = input('Enter their new/old street address: ')
+    new_phone = input('Enter this new/old phone number: ')
+    new_email = input('Enter their new/old email address: ')
     
-    pass
+    contacts_file = open('contacts.txt', 'r')
+    temp_file = open('temp.txt', 'w')
+    
+    name = contacts_file.readline()
+    st_ad = contacts_file.readline()
+    phone = contacts_file.readline()
+    email = contacts_file.readline()
+    
+    while name != '':
+        st_ad = contacts_file.readline()
+        
+        name = name.rstrip('\n')
+        st_ad = name.rstrip('\n')
+        
+        if search.lower() == name.lower():
+            temp_file.write(name + '\n')
+            temp_file.write(new_st + '\n')
+            temp_file.write(new_phone + '\n')
+            temp_file.write(new_email + '\n')
+            found = True
+        else:
+            temp_file.write(name + '\n')
+            temp_file.write(st_ad + '\n')
+            temp_file.write(phone + '\n')
+            temp_file.write(email + '\n')
+        
+        name = contacts_file.readline()
+    
+    contacts_file.close()
+    temp_file.close()
+    
+    os.remove('contacts.txt')
+    os.rename('temp.txt', 'contacts.txt')
+    if not found:
+        print('\nRecord not found.')
+    else:
+        print('The record you searched for has been found and replaced.')
     
 def delete_contact():
     #delete conatct accepts no arguments
