@@ -3,7 +3,7 @@ import random
 import os
 import math
 
-def main():
+def main(): #mason
     #main accepts no arguments
     #calls menu() for options and choice
     #use choice to call functions or exit program
@@ -52,7 +52,7 @@ def main():
     except:
         print('An error has occoured, try again later.')
     
-def menu(): #nolan
+def menu(): #mason
     #menu accepts no arguments
     #outputs list of options
     #prompts for option chosen
@@ -99,7 +99,7 @@ def add_contact(): #kyle
     
     print('\nAll data added to contacts.txt.')
     
-def search_contact():
+def search_contact(): #mason
     #search contact accepts no arguments
     #prompts for a contact tot search for
     #search contacts.txt for contact
@@ -158,16 +158,99 @@ def search_contact():
     except:
         print('An error has occoured, try again later.')
     
-def edit_contact(): #kyle
+def edit_contact(): #mason
     #edit contact accepts no arguments
     #prompts for a contact to find
     #if not found display error
     #when found prompt for what info to edit
     #use temp to edit contacts.txt
     
-    pass
+    #bool
+    found = False
     
-def delete_contact():
+    #get contact, which info, and new info
+    search = input('Enter the contact name to modify: ')
+    field = input('Enter which field of contact to change (Name, Address, Phone, Email): ')
+    new_field = input('Enter the new data for field: ')
+    
+    #open coffee.txt and a temp
+    con = open('contacts.txt', 'r')
+    temp = open('temp.txt', 'w')
+    
+    #read first contact
+    name = con.readline()
+    
+    while name != '':
+        address = con.readline()
+        phone = con.readline()
+        email = con.readline()
+        
+        #srtip newline
+        name = name.rstrip('\n')
+        address = address.rstrip('\n')
+        phone = phone.rstrip('\n')
+        email = email.rstrip('\n')
+        
+        if search.lower() == name.lower():
+            
+            if field.lower() == name.lower():
+                #write desc and new qty to temp
+                outfile.write(new_field + '\n')
+                outfile.write(address + '\n')
+                outfile.write(phone + '\n')
+                outfile.write(email + '\n')
+                
+            elif field.lower() == address.lower():
+                #write desc and new qty to temp
+                outfile.write(name + '\n')
+                outfile.write(new_field + '\n')
+                outfile.write(phone + '\n')
+                outfile.write(email + '\n')
+                
+            elif field.lower() == phone.lower():
+                #write desc and new qty to temp
+                outfile.write(name + '\n')
+                outfile.write(address + '\n')
+                outfile.write(new_field + '\n')
+                outfile.write(email + '\n')
+                
+            elif field.lower() == email.lower():
+                #write desc and new qty to temp
+                outfile.write(name + '\n')
+                outfile.write(address + '\n')
+                outfile.write(phone + '\n')
+                outfile.write(new_field + '\n')
+                
+            found = True
+            
+        else:
+            #write the orginal record to temp
+            temp.write(name + '\n')
+            temp.write(address + '\n')
+            temp.write(phone + '\n')
+            temp.write(email + '\n')
+            
+        #read next desc
+        name = con.readline()
+        
+    #all records have been processed, remove and rename files
+    temp.close()
+    con.close()
+    
+    #delete orginal
+    os.remove('contacts.txt')
+    
+    #rename temp
+    os.rename('temp.txt', 'contacts.txt')
+    
+    #description not found
+    if found == False:
+        print('\nRecord not found.')
+    
+    else:
+        print('The field for ', field, ' on ', search, ' has been updated to', new_field, '.', sep='')
+    
+def delete_contact(): #mason
     #delete conatct accepts no arguments
     #prompts for a contact to delete
     #use temp to remove contact from contacts.txt
@@ -245,7 +328,7 @@ def delete_contact():
     except:
         print('An error has occoured, try again later.')
     
-def display_contacts(): #nolan
+def display_contacts(): #kyle
     #display contacts accepts no arguments
     #print all contacts in contacts.txt
 
