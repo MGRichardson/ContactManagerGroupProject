@@ -248,6 +248,12 @@ def delete_contact():
 def display_contacts(): #nolan
     #display contacts accepts no arguments
     #print all contacts in contacts.txt
+
+    infile = open('contacts.txt', 'r')
+    contents = infile.read()
     
-    pass
+    #output and close the file
+    print(contents)
+    infile.close()
+    
     
