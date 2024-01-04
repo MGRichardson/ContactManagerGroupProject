@@ -67,7 +67,7 @@ def menu(): #mason
     print('6) Exit')
     
     #ask for option
-    choice = input('Menu option: ')
+    choice = int(input('Menu option: '))
     
     return choice
     
