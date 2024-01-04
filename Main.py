@@ -195,31 +195,31 @@ def edit_contact(): #mason
             
             if field.lower() == name.lower():
                 #write desc and new qty to temp
-                outfile.write(new_field + '\n')
-                outfile.write(address + '\n')
-                outfile.write(phone + '\n')
-                outfile.write(email + '\n')
+                temp.write(new_field + '\n')
+                temp.write(address + '\n')
+                temp.write(phone + '\n')
+                temp.write(email + '\n')
                 
             elif field.lower() == address.lower():
                 #write desc and new qty to temp
-                outfile.write(name + '\n')
-                outfile.write(new_field + '\n')
-                outfile.write(phone + '\n')
-                outfile.write(email + '\n')
+                temp.write(name + '\n')
+                temp.write(new_field + '\n')
+                temp.write(phone + '\n')
+                temp.write(email + '\n')
                 
             elif field.lower() == phone.lower():
                 #write desc and new qty to temp
-                outfile.write(name + '\n')
-                outfile.write(address + '\n')
-                outfile.write(new_field + '\n')
-                outfile.write(email + '\n')
+                temp.write(name + '\n')
+                temp.write(address + '\n')
+                temp.write(new_field + '\n')
+                temp.write(email + '\n')
                 
             elif field.lower() == email.lower():
                 #write desc and new qty to temp
-                outfile.write(name + '\n')
-                outfile.write(address + '\n')
-                outfile.write(phone + '\n')
-                outfile.write(new_field + '\n')
+                temp.write(name + '\n')
+                temp.write(address + '\n')
+                temp.write(phone + '\n')
+                temp.write(new_field + '\n')
                 
             found = True
             
