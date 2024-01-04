@@ -58,7 +58,18 @@ def menu(): #nolan
     #prompts for option chosen
     #return choice
     
-    pass
+    #print menu
+    print('1) Add a contact')
+    print('2) Search for contacts')
+    print('3) Edit contact')
+    print('4) Delete contact')
+    print('5) Display all contacts')
+    print('6) Exit')
+    
+    #ask for option
+    choice = input('Menu option: ')
+    
+    return choice
     
 def add_contact(): #kyle
     #add contact accepts no arguments
