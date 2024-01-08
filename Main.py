@@ -7,6 +7,7 @@ def main(): #mason
     #main accepts no arguments
     #calls menu() for options and choice
     #use choice to call functions or exit program
+    
     try: 
         #welcome message
         print('Welcome to Contact Manager')
@@ -32,6 +33,9 @@ def main(): #mason
             if choice == 5:
                 display_contacts()
             
+            #call options
+            choice = menu()
+        
         if choice != 6:
             #invalid input
             print('Please enter a number 1-6.')
@@ -126,9 +130,10 @@ def search_contact(): #mason
             phone = infile.readline()
             email = infile.readline()
             
-            
             #strip \n
             name = name.rstrip('\n')
+            address = address.rstrip('\n')
+            phone = phone.rstrip('\n')
             
             #determine if record is found
             if name.lower() == search.lower():
@@ -165,90 +170,101 @@ def edit_contact(): #mason
     #when found prompt for what info to edit
     #use temp to edit contacts.txt
     
-    #bool
-    found = False
-    
-    #get contact, which info, and new info
-    search = input('Enter the contact name to modify: ')
-    field = input('Enter which field of contact to change (Name, Address, Phone, Email): ')
-    new_field = input('Enter the new data for field: ')
-    
-    #open coffee.txt and a temp
-    con = open('contacts.txt', 'r')
-    temp = open('temp.txt', 'w')
-    
-    #read first contact
-    name = con.readline()
-    
-    while name != '':
-        address = con.readline()
-        phone = con.readline()
-        email = con.readline()
+    try:
+        #bool
+        found = False
         
-        #srtip newline
-        name = name.rstrip('\n')
-        address = address.rstrip('\n')
-        phone = phone.rstrip('\n')
-        email = email.rstrip('\n')
+        #get contact, which info, and new info
+        search = input('Enter the contact name to modify: ')
+        field = input('Enter which field of contact to change (Name, Address, Phone, Email): ')
+        new_field = input('Enter the new data for field: ')
         
-        if search.lower() == name.lower():
-            
-            if field.lower() == name.lower():
-                #write desc and new qty to temp
-                temp.write(new_field + '\n')
-                temp.write(address + '\n')
-                temp.write(phone + '\n')
-                temp.write(email + '\n')
-                
-            elif field.lower() == address.lower():
-                #write desc and new qty to temp
-                temp.write(name + '\n')
-                temp.write(new_field + '\n')
-                temp.write(phone + '\n')
-                temp.write(email + '\n')
-                
-            elif field.lower() == phone.lower():
-                #write desc and new qty to temp
-                temp.write(name + '\n')
-                temp.write(address + '\n')
-                temp.write(new_field + '\n')
-                temp.write(email + '\n')
-                
-            elif field.lower() == email.lower():
-                #write desc and new qty to temp
-                temp.write(name + '\n')
-                temp.write(address + '\n')
-                temp.write(phone + '\n')
-                temp.write(new_field + '\n')
-                
-            found = True
-            
-        else:
-            #write the orginal record to temp
-            temp.write(name + '\n')
-            temp.write(address + '\n')
-            temp.write(phone + '\n')
-            temp.write(email + '\n')
-            
-        #read next desc
+        #open coffee.txt and a temp
+        con = open('contacts.txt', 'r')
+        temp = open('temp.txt', 'a')
+        
+        #read first contact
         name = con.readline()
         
-    #all records have been processed, remove and rename files
-    temp.close()
-    con.close()
-    
-    #delete orginal
-    os.remove('contacts.txt')
-    
-    #rename temp
-    os.rename('temp.txt', 'contacts.txt')
-    
-    #description not found
-    if found == False:
-        print('\nRecord not found.')
-    
-    else:
-        print('The field for ', field, ' on ', search, ' has been updated to', new_field, '.', sep='')
+        while name != '':
+            address = con.readline()
+            phone = con.readline()
+            email = con.readline()
+            
+            #srtip newline
+            name = name.rstrip('\n')
+            address = address.rstrip('\n')
+            phone = phone.rstrip('\n')
+            email = email.rstrip('\n')
+            
+            if search.lower() == name.lower():
+                
+                if field.lower() == name.lower():
+                    #write desc and new qty to temp
+                    temp.write(new_field + '\n')
+                    temp.write(address + '\n')
+                    temp.write(phone + '\n')
+                    temp.write(email + '\n')
+                    
+                elif field.lower() == address.lower():
+                    #write desc and new qty to temp
+                    temp.write(name + '\n')
+                    temp.write(new_field + '\n')
+                    temp.write(phone + '\n')
+                    temp.write(email + '\n')
+                    
+                elif field.lower() == phone.lower():
+                    #write desc and new qty to temp
+                    temp.write(name + '\n')
+                    temp.write(address + '\n')
+                    temp.write(new_field + '\n')
+                    temp.write(email + '\n')
+                    
+                elif field.lower() == email.lower():
+                    #write desc and new qty to temp
+                    temp.write(name + '\n')
+                    temp.write(address + '\n')
+                    temp.write(phone + '\n')
+                    temp.write(new_field + '\n')
+                    
+                found = True
+                
+            else:
+                #write the orginal record to temp
+                temp.write(name + '\n')
+                temp.write(address + '\n')
+                temp.write(phone + '\n')
+                temp.write(email + '\n')
+                
+            #read next desc
+            name = con.readline()
+            
+        #all records have been processed, remove and rename files
+        temp.close()
+        con.close()
+        
+        #delete orginal
+        os.remove('contacts.txt')
+        
+        #rename temp
+        os.rename('temp.txt', 'contacts.txt')
+        
+        #description not found
+        if found == False:
+            print('\nRecord not found.')
+        
+        else:
+            print('The field for ', field, ' on ', search, ' has been updated to ', new_field, '.', sep='')
+        
+    #error check
+    except ValueError as err:
+        print(err)
+        
+    except IOError as err:
+        print(err)
+        
+    except:
+        print('An error has occoured, try again later.')
     
 def delete_contact(): #mason
     #delete conatct accepts no arguments
@@ -340,3 +356,4 @@ def display_contacts(): #kyle
     infile.close()
     
     
+main()
