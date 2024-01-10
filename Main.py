@@ -199,28 +199,28 @@ def edit_contact(): #mason
             
             if search.lower() == name.lower():
                 
-                if field.lower() == name.lower():
+                if field.lower() == 'Name'.lower():
                     #write desc and new qty to temp
                     temp.write(new_field + '\n')
                     temp.write(address + '\n')
                     temp.write(phone + '\n')
                     temp.write(email + '\n')
                     
-                elif field.lower() == address.lower():
+                elif field.lower() == 'Address'.lower():
                     #write desc and new qty to temp
                     temp.write(name + '\n')
                     temp.write(new_field + '\n')
                     temp.write(phone + '\n')
                     temp.write(email + '\n')
                     
-                elif field.lower() == phone.lower():
+                elif field.lower() == 'phone'.lower():
                     #write desc and new qty to temp
                     temp.write(name + '\n')
                     temp.write(address + '\n')
                     temp.write(new_field + '\n')
                     temp.write(email + '\n')
                     
-                elif field.lower() == email.lower():
+                elif field.lower() == 'email'.lower():
                     #write desc and new qty to temp
                     temp.write(name + '\n')
                     temp.write(address + '\n')
@@ -254,7 +254,7 @@ def edit_contact(): #mason
             print('\nRecord not found.')
         
         else:
-            print('The field for ', field, ' on ', search, ' has been updated to ', new_field, '.', sep='')
+            print('The field, ', field, ' on ', search, ' has been updated to ', new_field, '.', sep='')
         
     #error check
     except ValueError as err:
