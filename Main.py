@@ -296,8 +296,8 @@ def delete_contact(): #mason
             #strip
             name = name.rstrip('\n')
             address = address.rstrip('\n')
-            phone = address.rstrip('\n')
-            email = address.rstrip('\n')
+            phone = phone.rstrip('\n')
+            email = email.rstrip('\n')
             
         #search for and delete record
             if search.lower() != name.lower():
